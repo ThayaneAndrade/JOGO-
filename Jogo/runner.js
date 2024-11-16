@@ -157,15 +157,27 @@ function animate(spriteWidth, spriteHeight) {
         if(detectaColisao(player, point)) {
             pontos++
             pointArray = [];
-            velocityX = velocityX - (pontos)
+            velocityX = velocityX - (pontos/2)
         }
     }
     if (pontos === 0){
         const corpo = document.getElementById("corpo")
         corpo.style.backgroundColor = "White";
-    }else if (pontos === 1){
+    }if (pontos === 1){
+        const titulo = document.getElementById("title")
+        titulo.style.color = "Red";
+    }if (pontos === 2){
         const corpo = document.getElementById("corpo")
-        corpo.style.backgroundColor = "Red";
+        corpo.style.backgroundColor = "Orange";
+    }if (pontos === 3){
+        const borda = document.getElementById("board")
+        borda.style.borderColor = "Yellow";
+    }if (pontos === 4){
+        const canva = document.getElementById("board")
+        canva.style.backgroundColor = "Cyan";
+    }if (pontos === 5){
+        playerImg = new Image();
+        playerImg.src = "./img/playerImg2.png"
     }
     
 
