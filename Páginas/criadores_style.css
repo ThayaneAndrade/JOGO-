@@ -1,0 +1,137 @@
+body {
+    font-family:impact, fantasy;
+    background-color:#B9A2E0;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    padding-top: 100px;
+}
+
+.container {
+    text-align: center;
+    background:#9EC0E1;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);;
+    padding: 20px;
+    width: 100%;
+    border: 1px solid black
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color:white;
+    border: 1px solid black;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+.creators {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.creator {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #DFB1E1;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid black;
+}
+
+.creator:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.creator img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 1px solid black;
+}
+
+.info {
+    text-align: left;
+}
+
+h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color:white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;;
+}
+
+p {
+    font-size: 1rem;
+    color: black;
+    line-height: 1.5;
+
+}
+
+.footer {
+    background:#8869A5;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+.footer-link {
+    color: #8095CE;
+    text-decoration: none;
+    text-align:center;
+    display: flex ;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+.navbar {
+    background-color:#B9A2E0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 10px 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.navbar ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar ul li {
+    margin: 0 15px;
+}
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;;
+}
+
+
+.navbar ul li a:hover {
+    color: #9EC0E1;
+}
+
+header, section, .container, footer {
+    margin-top: 60px;
+    padding: 20px;
+    text-align: center;
+}
