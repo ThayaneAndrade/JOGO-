@@ -199,9 +199,11 @@ function animate(spriteWidth, spriteHeight) {
         corpo.style.backgroundColor = "White";
     }if (pontos === 1){
         const titulo = document.getElementById("title")
-        titulo.style.color = "#91C5EC";
+        titulo.style.webkitTextFillColor = "#91C5EC";
         const botao = document.getElementById("restartButton")
         botao.style.color = "#91C5EC"
+        const corpo = document.getElementById("corpo")
+        corpo.style.webkitTextFillColor = "#91C5EC";
     }if (pontos === 2){
         const corpo = document.getElementById("corpo")
         corpo.style.backgroundColor = "#8869A5";
@@ -216,6 +218,10 @@ function animate(spriteWidth, spriteHeight) {
     }if (pontos === 5){
         playerImg = new Image();
         playerImg.src = "./img/playerImg2.png"
+    }if (pontos >= 6) {
+        // Redireciona o jogador para uma nova página
+        window.location.href = "pagina-destino.html"; //Pagina de destino
+        return; 
     }
     
 
