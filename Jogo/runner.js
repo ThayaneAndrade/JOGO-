@@ -180,7 +180,7 @@ function animate(spriteWidth, spriteHeight) {
 
     for (let i = 0; i < enemyArray.length; i++) {
         let enemy = enemyArray[i];
-        enemy.x += velocityX + 1;
+        enemy.x += velocityX + 2;
         ctx.drawImage(enemy.img, enemy.x, enemy.y, enemy.width, enemy.height);
 
         if(detectaColisao(player, enemy)) {
@@ -220,8 +220,9 @@ function animate(spriteWidth, spriteHeight) {
         playerImg.src = "./img/playerImg2.png"
     }if (pontos >= 6) {
         // Redireciona o jogador para uma nova página
-        window.location.href = "pagina-destino.html"; //Pagina de destino
-        return; 
+        window.location.href = "paginafinal.html";
+            return;
+            
     }
     
 
@@ -246,6 +247,7 @@ function loadImages(spriteWidth, spriteHeight) {
     if (--numOfImages > 0) return;
     animate(spriteWidth, spriteHeight); // Inicia a animação após carregar as imagens
 }
+
 
 function movePlayer(e) {
     if (gameOver) return;
