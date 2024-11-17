@@ -48,6 +48,15 @@ let pointX = 600;
 let pointImg = new Image();
 pointImg.src = "./img/pointImg.png"
 
+//Enemy
+let enemyArray = [];
+let enemyHeight = 32;
+let enemyWidth = 32;
+let enemyY = 10;
+let enemyX = 600;
+let enemyImg = new Image();
+enemyImg.src = "./img/enemyImg.png"
+
 //fisicas
 let velocityX = -8; // velocidade de obstáculos
 let velocityY = 0;
@@ -57,6 +66,7 @@ let gravity = 0.4;
 let gameOver = false;
 let distancia = 0;
 let pontos = 0;
+let gameStart = false;
 
 
 
@@ -93,11 +103,18 @@ setInterval(placeObstacle, 1000); // gerar obstáculos a cada 1 segundo
 setInterval(placePoints, 10000); // gerar pontos a cada 10 segundos
 document.addEventListener("keydown", movePlayer); // ao pressionar teclas
 
+
 function animate(spriteWidth, spriteHeight) {
+    
+    
     if (gameOver) return;
-    console.log(pontos)
+
+    if (gameStart == true){
+        
+    
 
     requestAnimationFrame(() => animate(spriteWidth, spriteHeight));
+
 
     // Preencher o fundo do canvas com uma cor para ajudar a visualizar
     ctx.fillStyle = "lightblue";  // Definir uma cor de fundo para o canvas
@@ -160,21 +177,42 @@ function animate(spriteWidth, spriteHeight) {
             velocityX = velocityX - (pontos/2)
         }
     }
+
+    for (let i = 0; i < enemyArray.length; i++) {
+        let enemy = enemyArray[i];
+        enemy.x += velocityX + 1;
+        ctx.drawImage(enemy.img, enemy.x, enemy.y, enemy.width, enemy.height);
+
+        if(detectaColisao(player, enemy)) {
+            gameOver = true
+            playerImg.src = "./img/playerImg-rip.png"
+            playerImg.onload = function() {
+                ctx.drawImage(playerImg, player.x, player.y, 34, 32);
+            }
+        }
+    } 
+
+
+
     if (pontos === 0){
         const corpo = document.getElementById("corpo")
         corpo.style.backgroundColor = "White";
     }if (pontos === 1){
         const titulo = document.getElementById("title")
-        titulo.style.color = "Red";
+        titulo.style.color = "#91C5EC";
+        const botao = document.getElementById("restartButton")
+        botao.style.color = "#91C5EC"
     }if (pontos === 2){
         const corpo = document.getElementById("corpo")
-        corpo.style.backgroundColor = "Orange";
-    }if (pontos === 3){
+        corpo.style.backgroundColor = "#8869A5";
+        const botao = document.getElementById("restartButton")
+        botao.style.backgroundColor = "#C68BDF"
+    }if (pontos === 3){     
         const borda = document.getElementById("board")
-        borda.style.borderColor = "Yellow";
+        borda.style.borderColor = "#B1BEEB";
     }if (pontos === 4){
         const canva = document.getElementById("board")
-        canva.style.backgroundColor = "Cyan";
+        canva.style.backgroundColor = "#8095CE";
     }if (pontos === 5){
         playerImg = new Image();
         playerImg.src = "./img/playerImg2.png"
@@ -187,8 +225,14 @@ function animate(spriteWidth, spriteHeight) {
     distancia++;
     ctx.fillText(distancia + " metros", 5, 15);
         
-    console.log(distancia, "metros")
-    
+    if (gameOver) {
+        const restartButton = document.getElementById('restartButton');
+        restartButton.style.display = 'block'; // Exibe o botão
+    }
+    }else if (gameStart == false){
+        return
+    }
+
     }
 
 let numOfImages = 1;
@@ -216,15 +260,39 @@ function placePoints(){
         height: 32
     };   
 
-    pointArray.push(point);
+    let placePointChance = Math.random();
 
-    if(pointArray.length > 5){
-        pointArray.shift();
+    if (placePointChance > .40){ 
+    pointArray.push(point);
+    console.log("Ponto Spawnado")
+
+        if(pointArray.length > 5){
+            pointArray.shift();
+        }
+    }else{
+        placeEnemy()
+        console.log("Inimigo Spawnado")
+    }
+
+}
+function placeEnemy(){
+    
+    let enemy = {
+        img: enemyImg,
+        x: enemyX,
+        y: enemyY,
+        width: 32,
+        height: 32
+    };   
+
+    enemyArray.push(enemy);
+
+    if(enemyArray.length > 5){
+        enemyArray.shift();
     }
 
 
 }
-              
 
 function placeObstacle() {
     if (gameOver) return;
@@ -267,3 +335,17 @@ function detectaColisao(a, b) {
      && a.y < b.y + b.height //Canto esquerdo superior do A não alcança o canto esquerdo inferior do B
      && a.y + a.height > b.y;  //Canto direito inferior do A não alcança o canto direito inferior do B
 }
+
+function startGame() {
+    // Esconde o botão de início
+    const startButton = document.getElementById('startButton');
+    startButton.style.display = 'none';
+
+    // Inicia o jogo
+    gameStart = true;
+
+    // Chama a função de animação
+    animate(playerImg.width / 11, playerImg.height);
+}
+
+

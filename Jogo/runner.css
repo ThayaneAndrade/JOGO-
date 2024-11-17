@@ -1,10 +1,40 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin-left: 35%;
+    margin-right: 35%
 }
 
 #board{
     background-color: whitesmoke;
     border: 5px solid;
     border-color: black;
+}
+
+#restartButton {
+    display: none; /* Inicialmente escondido */
+    padding: 10px 20px;
+    background-color: white;
+    color: black;
+    border-style: solid;
+    border-top: 5px;
+    cursor: pointer;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    
+}
+#startButton {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 20px;
+    font-size: 20px;
+    background-color: white;
+    color: black;
+    border-style: solid;
+    border-width: 5px;
+    cursor: pointer;
 }
